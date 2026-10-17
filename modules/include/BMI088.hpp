@@ -2,6 +2,8 @@
 #define BMI088_HPP
 
 #include "IMU.hpp"
+#include "main.h"
+#include "spi.h"
 
 namespace BMI088
 {
@@ -18,7 +20,15 @@ enum BMI088_SENSOR
 };
 
 /*---------------------------硬件连接---------------------------*/
-// TODO: 配置 BMI088 使用的 SPI 句柄，以及加速度计和陀螺仪各自的 GPIO 片选端口、引脚。
+// SPI1：SCK=PA5、MISO=PB4、MOSI=PA7（C 板的 MISO 走 PB4，不是默认的 PA6）
+// 片选是普通 GPIO 输出，低电平有效；CubeMX 里 SPI1 的硬件 NSS 要设为 Disable
+#define BMI088_SPI_HANDLE hspi1
+
+#define BMI088_ACC_CS_GPIO_PORT GPIOA  ///< 加速度计片选
+#define BMI088_ACC_CS_PIN GPIO_PIN_4
+
+#define BMI088_GYRO_CS_GPIO_PORT GPIOB ///< 陀螺仪片选
+#define BMI088_GYRO_CS_PIN GPIO_PIN_0
 
 #define HEATING_RESISTANCE_TIM htim10            //< 加热电阻定时器
 #define HEATING_RESISTANCE_CHANNEL TIM_CHANNEL_1 //< 加热电阻通道
