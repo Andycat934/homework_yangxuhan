@@ -1,0 +1,24 @@
+# 构建产物（CubeMX + CMake/Ninja 生成，不入库）
+build/
+cmake-build-*/
+*.elf
+*.map
+*.hex
+*.bin
+*.o
+*.obj
+*.d
+*.su
+
+# 编辑器 / IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# 系统杂项
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 说明：board/ 下 CubeMX 生成的源码、Middlewares/、AZURE_RTOS/ 都要入库，
+# 所以这里只忽略 build/ 之类的产物，不要写 board/build 以外的宽泛规则。
